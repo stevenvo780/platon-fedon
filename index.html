@@ -86,6 +86,20 @@
     body.nav-hover-right .nav-hint.right { opacity:.6; }
     @media (max-width:600px){ .nav-hint { font-size:30px; } }
 
+    /* ── Botón de pantalla completa (arriba a la izquierda) ── */
+    .fs-btn {
+      position:fixed; top:14px; left:14px; z-index:40;
+      width:38px; height:38px; padding:0; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(21,20,15,.72); color:var(--accent);
+      border:1px solid rgba(217,180,107,.35); border-radius:9px;
+      opacity:.4; transition:opacity .2s ease, background .2s ease, transform .15s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .fs-btn:hover, .fs-btn:focus-visible { opacity:1; background:rgba(217,180,107,.16); outline:none; }
+    .fs-btn:active { transform:scale(.92); }
+    .fs-btn svg { width:18px; height:18px; display:block; }
+
     /* ═════════ Fondos animados (CSS puro · solo transform/opacity, livianos) ═════════ */
     html, body { background:#15140f; }
     .reveal-viewport,
@@ -443,6 +457,13 @@
 <div class="nav-hint left"  aria-hidden="true">‹</div>
 <div class="nav-hint right" aria-hidden="true">›</div>
 
+<!-- Botón de pantalla completa -->
+<button class="fs-btn" id="fsBtn" type="button" title="Pantalla completa (F)" aria-label="Pantalla completa">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9V5a1 1 0 0 1 1-1h4M20 9V5a1 1 0 0 0-1-1h-4M4 15v4a1 1 0 0 0 1 1h4M20 15v4a1 1 0 0 1-1 1h-4"/>
+  </svg>
+</button>
+
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
@@ -498,6 +519,21 @@
   }
   Reveal.on('ready',        function (e) { applyBgFx(e.currentSlide); });
   Reveal.on('slidechanged', function (e) { applyBgFx(e.currentSlide); });
+
+  /* ── Botón de pantalla completa ── */
+  (function () {
+    var btn = document.getElementById('fsBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var d = document;
+      if (d.fullscreenElement || d.webkitFullscreenElement) {
+        (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+      } else {
+        var el = d.documentElement;
+        (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+      }
+    });
+  })();
 </script>
 </body>
 </html>
