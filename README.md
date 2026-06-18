@@ -26,9 +26,15 @@ python3 -m http.server 8099
 
 ### Navegación por clic / táctil
 
-- **Clic en el tercio izquierdo** de la pantalla → diapositiva anterior · **clic en el tercio derecho** → avanzar.
+- **Clic en el tercio izquierdo** de la pantalla → diapositiva anterior · **clic en el tercio derecho** → avanzar (las pistas `‹ ›` indican las zonas).
 - El **tercio central** queda libre (puedes seleccionar texto sin pasar de diapositiva).
-- En táctil: **desliza** para navegar. Las flechas de control están en los bordes, separadas del número de diapositiva.
+- En táctil: **desliza** para navegar. No hay flechas de control propias: se navega por clic lateral, teclado o deslizamiento.
+
+### Fondos animados
+
+- 6 animaciones de fondo en CSS puro (solo `transform`/`opacity`, muy livianas): polvo estelar, ondas, cuerdas, entramado, órbitas y rejilla emergente.
+- Se asignan por diapositiva vía `data-anim` y `data-fx`, repitiéndose en slides afines con variación de color.
+- Se desactivan solas con `prefers-reduced-motion: reduce`.
 
 ## Estructura
 
