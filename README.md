@@ -2,7 +2,7 @@
 
 Deck académico autocontenido en **reveal.js 5.1.0** (CDN), tema *night*, tipografía serif (EB Garamond), notas del ponente y soporte LaTeX vía MathJax 3.
 
-**Tema:** Refutación de Simmias y Cebes · La Teoría de las Formas (Fedón 84c–102a) · 12 slides (abre con pregunta, cierra con respuesta y puente al *Gorgias*).
+**Tema:** Refutación de Simmias y Cebes · La Teoría de las Formas (Fedón 84c–102a) · 13 slides (abre con pregunta; cierra con respuesta, puente al *Gorgias* y síntesis: el Bien como proliferación de la organización).
 
 > Exposición dictada por Steven Vallejo, jue 11 jun 2026. Versión escindida de [`stevenvo780/expos-junio-2026`](https://github.com/stevenvo780/expos-junio-2026) como proyecto atómico: 1 deck = 1 repo.
 
@@ -42,7 +42,7 @@ python3 -m http.server 8099
 platon-fedon/
 ├── README.md
 ├── vercel.json          # cleanUrls + trailingSlash
-└── index.html           # deck autocontenido (12 slides)
+└── index.html           # deck autocontenido (13 slides)
 ```
 
 ## Estructura narrativa
@@ -54,6 +54,7 @@ platon-fedon/
 | 3–9 | Cuerpo | Reconstrucción del argumento (ubicación, objeciones de Simmias/Cebes, misología, refutación, segunda navegación, Formas como aitia, óptica crítica) |
 | 10 | Puente contemporáneo | Qué es el *emergentismo* y la *teoría integrada de la información* (IIT, Φ), y cómo conectan con el diálogo |
 | 11 | Cierre | Responde *emergente, no fundamental*; conecta con el *Gorgias* (*kolakeia* vs *téchne*) y deja la pregunta para seminario |
+| 12 | Síntesis final | Recupera el *telos* platónico naturalizado: el Bien como proliferación de la organización (más integración, más Φ) |
 
 `index.html` es **self-contained**: solo depende de CDNs públicos (jsDelivr para reveal.js + MathJax, Google Fonts para EB Garamond). No hay build step ni `node_modules`.
 
