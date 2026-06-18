@@ -24,6 +24,12 @@ python3 -m http.server 8099
 - **`←` / `→` / `Espacio`** — navegar. Los bullets aparecen de a uno (fragments).
 - **`?`** — ayuda con todos los atajos.
 
+### Navegación por clic / táctil
+
+- **Clic en el tercio izquierdo** de la pantalla → diapositiva anterior · **clic en el tercio derecho** → avanzar.
+- El **tercio central** queda libre (puedes seleccionar texto sin pasar de diapositiva).
+- En táctil: **desliza** para navegar. Las flechas de control están en los bordes, separadas del número de diapositiva.
+
 ## Estructura
 
 ```

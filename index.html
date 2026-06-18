@@ -62,6 +62,34 @@
     .reveal .title-rule { width:64px; height:2px; background:var(--accent); border:0; margin:1em auto; }
     .reveal mjx-container { color:#ecdfc2; }
     .reveal .num { color:var(--accent); font-weight:600; }
+
+    /* ── Número de diapositiva: píldora legible, abajo a la DERECHA ── */
+    .reveal .slide-number {
+      right:14px; bottom:12px; left:auto; top:auto;
+      background:rgba(21,20,15,.72); color:var(--accent);
+      font-family:var(--r-heading-font); font-size:14px; letter-spacing:.06em;
+      padding:3px 10px; border-radius:999px; border:1px solid rgba(217,180,107,.35);
+    }
+    .reveal .slide-number a { color:var(--accent); }
+
+    /* ── Las flechas de control se mueven a los bordes (no chocan con el número) ── */
+    .reveal .controls { color:var(--accent); }
+    .reveal .controls .navigate-left { left:8px; }
+    .reveal .controls .navigate-right { right:8px; }
+
+    /* ── Zonas de clic en los lados para pasar diapositiva ── */
+    .nav-hint {
+      position:fixed; top:50%; transform:translateY(-50%);
+      font-family:var(--r-heading-font); color:var(--accent);
+      font-size:40px; line-height:1; opacity:.18; pointer-events:none;
+      z-index:20; transition:opacity .2s ease;
+      text-shadow:0 1px 6px rgba(0,0,0,.6); user-select:none;
+    }
+    .nav-hint.left  { left:14px; }
+    .nav-hint.right { right:14px; }
+    body.nav-hover-left  .nav-hint.left  { opacity:.6; }
+    body.nav-hover-right .nav-hint.right { opacity:.6; }
+    @media (max-width:600px){ .nav-hint { font-size:30px; } }
   </style>
 </head>
 <body>
@@ -311,6 +339,10 @@
   </div>
 </div>
 
+<!-- Pistas visuales de las zonas de clic laterales -->
+<div class="nav-hint left"  aria-hidden="true">‹</div>
+<div class="nav-hint right" aria-hidden="true">›</div>
+
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
@@ -318,6 +350,11 @@
   Reveal.initialize({
     hash: true,
     slideNumber: 'c/t',
+    keyboard: true,            // ← → Espacio, etc. (navegación por teclado)
+    touch: true,               // deslizar en táctil
+    controls: true,
+    controlsLayout: 'edges',   // flechas a los bordes, no junto al número
+    controlsTutorial: false,
     transition: 'fade',
     transitionSpeed: 'default',
     center: true,
@@ -331,6 +368,29 @@
     },
     plugins: [ RevealNotes, RevealMath.MathJax3 ]
   });
+
+  /* ── Navegación por clic en los lados de la pantalla ──
+     Tercio izquierdo = atrás · tercio derecho = adelante · centro = libre
+     (respeta los fragments y no interfiere con enlaces, controles ni selección de texto). */
+  (function () {
+    var LEFT = 0.30, RIGHT = 0.70;   // proporción de ancho para cada zona
+    var IGNORE = 'a, button, input, textarea, select, .controls, .slide-number, .notes, .speaker-notes';
+
+    document.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest(IGNORE)) return;     // no robar clics útiles
+      if (String(window.getSelection())) return;                   // el usuario está seleccionando texto
+      var x = e.clientX / window.innerWidth;
+      if (x < LEFT)       Reveal.prev();
+      else if (x > RIGHT) Reveal.next();
+    });
+
+    // Resaltar la pista del borde según dónde esté el cursor
+    document.addEventListener('mousemove', function (e) {
+      var x = e.clientX / window.innerWidth;
+      document.body.classList.toggle('nav-hover-left',  x < LEFT);
+      document.body.classList.toggle('nav-hover-right', x > RIGHT);
+    });
+  })();
 </script>
 </body>
 </html>
