@@ -2,7 +2,7 @@
 
 Deck académico autocontenido en **reveal.js 5.1.0** (CDN), tema *night*, tipografía serif (EB Garamond), notas del ponente y soporte LaTeX vía MathJax 3.
 
-**Tema:** Refutación de Simmias y Cebes · La Teoría de las Formas (Fedón 84c–102a) · 10 slides.
+**Tema:** Refutación de Simmias y Cebes · La Teoría de las Formas (Fedón 84c–102a) · 11 slides (abre con pregunta, cierra con respuesta y puente al *Gorgias*).
 
 > Exposición dictada por Steven Vallejo, jue 11 jun 2026. Versión escindida de [`stevenvo780/expos-junio-2026`](https://github.com/stevenvo780/expos-junio-2026) como proyecto atómico: 1 deck = 1 repo.
 
@@ -30,8 +30,17 @@ python3 -m http.server 8099
 platon-fedon/
 ├── README.md
 ├── vercel.json          # cleanUrls + trailingSlash
-└── index.html           # deck autocontenido (10 slides)
+└── index.html           # deck autocontenido (11 slides)
 ```
+
+## Estructura narrativa
+
+| # | Slide | Función |
+|---|-------|---------|
+| 1 | *Pregunta de apertura* | Dejar sonando: ¿puede saberse qué es algo sin saberse por qué existe? |
+| 2 | Portada | Título, autor, fecha |
+| 3–10 | Cuerpo | Reconstrucción del argumento (ubicación, objeciones de Simmias/Cebes, misología, refutación, segunda navegación, Formas como aitia, crítica) |
+| 11 | Cierre | Responde **no**, conecta con el *Gorgias* (*kolakeia* vs *téchne*) y deja la pregunta para seminario |
 
 `index.html` es **self-contained**: solo depende de CDNs públicos (jsDelivr para reveal.js + MathJax, Google Fonts para EB Garamond). No hay build step ni `node_modules`.
 
